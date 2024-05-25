@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -100,8 +101,10 @@ class PhotosScreen {
             ) { paddingValues ->
                 val photos = photosFlow.collectAsLazyPagingItems()
                 val scope = rememberCoroutineScope()
-                val refreshing by derivedStateOf {
-                    photos.loadState.refresh is LoadState.Loading
+                val refreshing by remember {
+                    derivedStateOf {
+                        photos.loadState.refresh is LoadState.Loading
+                    }
                 }
                 val pullRefreshState = rememberPullRefreshState(
                     refreshing = refreshing,

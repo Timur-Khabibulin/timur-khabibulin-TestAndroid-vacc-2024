@@ -26,6 +26,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -53,7 +54,7 @@ class PhotoDetailScreen {
     )
     @Composable
     fun PhotoDetailScreenPreview() {
-        val state = mutableStateOf(LoadState.Success(Photo.Default))
+        val state = remember { mutableStateOf(LoadState.Success(Photo.Default)) }
         PhotoDetailScreen(
             state = state,
             onBack = {},
@@ -106,8 +107,10 @@ class PhotoDetailScreen {
                 }
             ) { paddingValues ->
                 val scope = rememberCoroutineScope()
-                val refreshing by derivedStateOf{
-                    state.value is LoadState.Loading
+                val refreshing by remember {
+                    derivedStateOf {
+                        state.value is LoadState.Loading
+                    }
                 }
                 val pullRefreshState = rememberPullRefreshState(
                     refreshing = refreshing,
