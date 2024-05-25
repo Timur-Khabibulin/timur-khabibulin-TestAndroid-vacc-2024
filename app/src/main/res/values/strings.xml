@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TestAndroid</string>
+    <string name="photos">Фотографии</string>
+    <string name="camera">Фотоаппарат</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="focal_length">Фокусное расстояние</string>
+    <string name="iso">ISO</string>
+    <string name="aperture">Диафрагма</string>
+    <string name="exposure">Выдержка</string>
+    <string name="error">Ошибка</string>
 </resources>
